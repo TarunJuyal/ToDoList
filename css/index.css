@@ -222,6 +222,19 @@ body {
   transform: translateY(4px);
 }
 
+#taskEditing {
+  float: right;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+  background-color: yellow;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  margin-right: 5px;
+}
+
 #taskDelete {
   float: right;
   height: 30px;
