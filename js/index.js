@@ -33,7 +33,6 @@ function createUnfinishedTask() {
     .ref("unfinishedTask")
     .once("value", function (snapshot) {
       snapshot.forEach(function (childSnapshot) {
-        var childKey = childSnapshot.key;
         var childData = childSnapshot.val();
         taskArray.push(Object.values(childData));
       });
@@ -42,9 +41,10 @@ function createUnfinishedTask() {
         var taskDate = taskArray[i][0];
         var key = taskArray[i][1];
         var task = taskArray[i][2];
+
         taskContainer = document.createElement("div");
         taskContainer.setAttribute("class", "taskContainer");
-        taskContainer.setAttribute("dataKey", "key");
+        taskContainer.setAttribute("dataKey", key);
 
         var taskData = document.createElement("div");
         taskData.setAttribute("id", "taskData");
@@ -60,7 +60,7 @@ function createUnfinishedTask() {
         date.innerHTML = taskDate;
 
         var taskTool = document.createElement("div");
-        taskData.setAttribute("id", "taskTool");
+        taskTool.setAttribute("id", "taskTool");
 
         var taskDone = document.createElement("button");
         taskDone.setAttribute("id", "taskDone");
@@ -82,7 +82,10 @@ function createUnfinishedTask() {
 
         var taskDelete = document.createElement("button");
         taskDelete.setAttribute("id", "taskDelete");
-        taskDelete.setAttribute("onclick", "taskDelete()");
+        taskDelete.setAttribute(
+          "onclick",
+          "taskDelete(this.parentElement.parentElement)"
+        );
         var faDelete = document.createElement("i");
         faDelete.setAttribute("class", "fa fa-trash");
 
@@ -117,30 +120,22 @@ function taskDone(task, taskTool) {
   var updates = {};
   updates["/finishedTask/" + key] = taskObj;
   firebase.database().ref().update(updates);
+  taskDelete(task);
+  createFinishedTask();
 }
 
 function finishEdit(editButton, task) {
-  editButton.style.backgroundcolor = white;
-  editButton.style.color = black;
-  title = task.childNodes[0].childNodes[0];
-  title.setAttribute("contenteditable", "false");
-
-  date = task.childNodes[0].childNodes[1];
-  date.setAttribute("contenteditable", "false");
-}
-
-function taskEdit(task, editButton) {
-  editButton.style.backgroundcolor = yellow;
-  editButton.style.color = white;
+  editButton.setAttribute("id", "taskEdit");
   editButton.setAttribute(
     "onclick",
-    "finishEdit(this,this.parentElement.parentElement)"
+    "taskEdit(this,this.parentElement.parentElement)"
   );
+
   title = task.childNodes[0].childNodes[0];
-  title.setAttribute("contenteditable", "true");
+  title.setAttribute("contenteditable", false);
 
   date = task.childNodes[0].childNodes[1];
-  date.setAttribute("contenteditable", "true");
+  date.setAttribute("contenteditable", false);
 
   var key = task.getAttribute("dataKey");
   console.log(key);
@@ -154,6 +149,68 @@ function taskEdit(task, editButton) {
   firebase.database().ref().update(updates);
 }
 
-function taskDelete() {
-  console.log("task delete");
+function taskEdit(task, editButton) {
+  editButton.setAttribute("id", "taskEditing");
+  editButton.setAttribute(
+    "onclick",
+    "finishEdit(this,this.parentElement.parentElement)"
+  );
+  title = task.childNodes[0].childNodes[0];
+  title.setAttribute("contenteditable", true);
+
+  date = task.childNodes[0].childNodes[1];
+  date.setAttribute("contenteditable", true);
+}
+
+function taskDelete(task) {
+  var key = task.getAttribute("dataKey");
+  console.log(key);
+  var taskToRemove = firebase.database().ref("unfinishedTask/" + key);
+  taskToRemove.remove();
+
+  task.remove();
+}
+
+function createFinishedTask() {
+  var finishedTaskContainer = document.getElementsByClassName("container")[1];
+  finishedTaskContainer.innerHTML = "";
+  var taskArray = [];
+  firebase
+    .database()
+    .ref("finishedTask")
+    .once("value", function (snapshot) {
+      snapshot.forEach(function (childSnapshot) {
+        var childData = childSnapshot.val();
+        taskArray.push(Object.values(childData));
+      });
+      var i;
+      for (i = 0; i < taskArray.length; i++) {
+        var taskDate = taskArray[i][0];
+        var key = taskArray[i][1];
+        var task = taskArray[i][2];
+
+        taskContainer = document.createElement("div");
+        taskContainer.setAttribute("class", "taskContainer");
+        taskContainer.setAttribute("dataKey", key);
+
+        var taskData = document.createElement("div");
+        taskData.setAttribute("id", "taskData");
+
+        var title = document.createElement("p");
+        title.setAttribute("id", "taskTitle");
+        title.setAttribute("contenteditable", "false");
+        title.innerHTML = task;
+
+        var date = document.createElement("p");
+        date.setAttribute("id", "taskDate");
+        date.setAttribute("contenteditable", "false");
+        date.innerHTML = taskDate;
+
+        finishedTaskContainer.append(taskContainer);
+
+        taskContainer.append(taskData);
+        taskData.append(title);
+        taskData.append(date);
+      }
+    });
 }
