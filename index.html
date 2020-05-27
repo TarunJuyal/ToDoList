@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To do Task List</title>
+    <link rel="icon" href="images/favicon.jpg" type="image/png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="css/index.css" />
+    <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-database.js"></script>
+    <script src="js/index.js"></script>
+  </head>
+  <body onload="createUnfinishedTask();">
+    <div id="contentContainer">
+      <div id="finishTaskHeader">
+        <p>Finish Task</p>
+      </div>
+      <div id="taskInputContainer">
+        <!--Tasks to do-->
+        <input type="text" id="inputBox" placeholder="Start A Task" />
+        <input type="date" id="inputDate" />
+        <button id="inputButton" onclick="addTask()">
+          Add Task <i class="fa fa-arrow-circle-right"></i>
+        </button>
+      </div>
+
+      <!--Tasks to do-->
+      <p class="header">Tasks</p>
+      <div class="container"></div>
+
+      <!--Finished tasks-->
+      <p class="header">Finished</p>
+      <div class="container"></div>
+    </div>
+  </body>
+</html>

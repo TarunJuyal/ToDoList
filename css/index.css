@@ -1,0 +1,272 @@
+body {
+  background-color: whitesmoke;
+}
+
+#contentContainer {
+  border-radius: 30px;
+  background-color: black;
+  width: 50%;
+  margin: auto;
+  display: inline-block;
+  padding-bottom: 50px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 5%);
+}
+
+#finishTaskHeader {
+  margin: auto;
+  background-color: orangered;
+  color: white;
+  width: 90%;
+  height: 70px;
+  font-size: 60px;
+  font-family: monospace;
+  text-align: center;
+  border-radius: 10px;
+}
+
+#taskInputContainer {
+  background-color: black;
+  margin: 10px auto;
+  height: 130px;
+  width: 90%;
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+#inputBox {
+  margin: 5px;
+  width: 60%;
+  float: left;
+  height: 50px;
+  background-color: none;
+  border: none;
+  border-bottom: 2px solid black;
+  text-align: center;
+  font-family: monospace;
+  font-weight: bold;
+  font-size: 15px;
+  transition: 0.3s;
+}
+#inputBox:focus {
+  font-size: 20px;
+  border-bottom: 10px solid red;
+  outline: none;
+}
+
+#inputDate {
+  margin: 5px;
+  width: 34%;
+  float: left;
+  height: 51px;
+  background-color: none;
+  border: none;
+  border-bottom: 2px solid black;
+  text-align: center;
+  font-family: monospace;
+  font-weight: bold;
+  font-size: 15px;
+  padding: 0;
+  transition: 0.3s;
+}
+#inputDate:focus {
+  border-bottom: 10px solid red;
+  outline: none;
+}
+
+::-webkit-datetime-edit-fields-wrapper {
+  background-color: white;
+  margin-left: 50px;
+}
+::-webkit-datetime-edit-text {
+  color: red;
+  padding: 0 0.3em;
+}
+::-webkit-datetime-edit-month-field {
+  color: black;
+  font-family: monospace;
+}
+::-webkit-datetime-edit-day-field {
+  color: black;
+  font-family: monospace;
+}
+::-webkit-datetime-edit-year-field {
+  color: black;
+  font-family: monospace;
+}
+::-webkit-inner-spin-button {
+  display: none;
+}
+::-webkit-calendar-picker-indicator {
+  opacity: 1;
+  display: block;
+  float: left;
+  margin-right: 50px;
+  color: blue;
+  width: 15.5px;
+  height: 12.5px;
+}
+
+#inputButton {
+  width: 60%;
+  float: left;
+  margin-left: 20%;
+  margin-top: 20px;
+  background-color: green;
+  height: 40px;
+  color: white;
+  cursor: pointer;
+  outline: none;
+  text-align: center;
+  font-family: monospace;
+  font-size: 17px;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+#inputButton:hover {
+  background-color: rgb(88, 167, 88);
+  color: white;
+}
+#inputButton:active {
+  transform: translate(6px);
+}
+
+.header {
+  float: left;
+  margin-left: 45%;
+  background-color: orangered;
+  color: white;
+  text-align: center;
+  font-family: monospace;
+  font-weight: bold;
+  font-size: 15px;
+  padding: 5px 20px;
+  box-shadow: 0px 5px black;
+}
+
+.container {
+  float: left;
+  margin-left: 5%;
+  margin-bottom: 40px;
+  background-color: black;
+  width: 90%;
+  height: 390px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.taskContainer {
+  background-color: white;
+  width: 90%;
+  height: 80px;
+  margin: 0 auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.taskContainer:hover {
+  border: 2px solid red;
+  box-sizing: border-box;
+}
+
+#taskData {
+  float: left;
+  width: 200px;
+  height: 100%;
+  margin-left: 10px;
+}
+
+#taskTool {
+  float: right;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#taskDone {
+  float: right;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+  background-color: white;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  margin-right: 5px;
+}
+#taskDone:hover {
+  background-color: green;
+  color: white;
+}
+#taskDone:active {
+  transform: translateY(4px);
+}
+
+#taskEdit {
+  float: right;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+  background-color: white;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  margin-right: 5px;
+}
+#taskEdit:hover {
+  background-color: green;
+  color: white;
+}
+#taskEdit:active {
+  transform: translateY(4px);
+}
+
+#taskDelete {
+  float: right;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+  background-color: white;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  margin-right: 5px;
+}
+#taskDelete:hover {
+  background-color: green;
+  color: white;
+}
+#taskDelete:active {
+  transform: translateY(4px);
+}
+
+#taskTitle {
+  background-color: white;
+  font-family: monospace;
+  font-weight: bold;
+  font-size: 15px;
+  float: left;
+  width: 100%;
+}
+
+#taskDate {
+  background-color: white;
+  font-family: monospace;
+  font-weight: bold;
+  font-size: 12px;
+  color: grey;
+  margin: 0;
+  margin-bottom: 5px;
+  width: 100%;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: white;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: darkgray;
+}
