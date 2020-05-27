@@ -14,7 +14,7 @@
     <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-database.js"></script>
     <script src="js/index.js"></script>
   </head>
-  <body onload="createUnfinishedTask();">
+  <body onload="createUnfinishedTask(),createFinishedTask();">
     <div id="contentContainer">
       <div id="finishTaskHeader">
         <p>Finish Task</p>
@@ -30,11 +30,15 @@
 
       <!--Tasks to do-->
       <p class="header">Tasks</p>
-      <div class="container"></div>
+      <div class="container">
+        <!--Dynamic content-->
+      </div>
 
       <!--Finished tasks-->
       <p class="header">Finished</p>
-      <div class="container"></div>
+      <div class="container">
+        <!--Dynamic content-->
+      </div>
     </div>
   </body>
 </html>
